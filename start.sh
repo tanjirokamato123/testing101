@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+git config --global user.email "rushimoto001@gmail.com"
+git config --global user.name "rushimoto001"
+git config --global color.ui true
 git clone https://github.com/anasty17/mirror-leech-telegram-bot mirrorbot/ && cd mirrorbot
 git clone https://${SECRET_TOKEN}@github.com/rushimoto001/files -b main tmp
 cd tmp
