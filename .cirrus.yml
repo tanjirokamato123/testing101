@@ -1,0 +1,16 @@
+task:
+
+  name: Deploy
+  timeout_in: 120m
+  container:
+    dockerfile: Dockerfile
+    cpu: 4
+    memory: 8G
+
+  env:
+    CIRRUS_WORKING_DIR: "/tmp/ci"
+    SECRET_TOKEN: ENCRYPTED[1f1656f2f053a9dbda6943b9d9bdc410774d373ec4881a0a102fc50ad220698bdc885a6bc15687706cf51d4ea26ff07c]
+    NAME: Deploy
+
+  start_script:
+    - bash start.sh
