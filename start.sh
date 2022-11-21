@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+export TZ=Asia/Kolkata
+sudo timedatectl set-timezone Asia/Kolkata
 git clone https://github.com/anasty17/mirror-leech-telegram-bot mirrorbot/ && cd mirrorbot
 git clone https://${SECRET_TOKEN}@github.com/rushimoto001/files -b main tmp
 cd tmp
