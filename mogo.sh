@@ -18,9 +18,9 @@ else
   echo "You will be prompted several time for input during the install."
   echo "******************************************************************"
   
-  wget -qO- https://www.mongodb.org/static/pgp/server-4.0.asc | sudo bash -c "apt-key add"
+  wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
   
-  sudo bash -c "echo deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse > /etc/apt/sources.list.d/mongodb-org.list"
+  sudo bash -c "echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list"
   sudo bash -c "apt update && apt upgrade -y"
   sudo bash -c "apt install mongodb-org -y"
 
@@ -35,25 +35,12 @@ else
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
   sudo bash -c "service mongod start"
 
-  echo "Username for your Mongo DB admin account (DONOT use ampersands -> @)?"
-  read mongo_admin_user
-  
-  echo "What is the password you want to set for $mongo_admin_user (DONOT use ampersands -> @)?"
-  read mongo_admin_pwd 
-  
-  echo "User name will be set to $mongo_admin_user and password to $mongo_admin_pwd."
-  
-  mongo "admin" --eval "db.createUser({'user':'$mongo_admin_user','pwd':'$mongo_admin_pwd','roles': ['userAdminAnyDatabase','readWriteAnyDatabase']})"  
-  
   sudo bash -c "echo ' ' >> /etc/mongod.conf"
   sudo bash -c "echo 'security:' >> /etc/mongod.conf"
   sudo bash -c "echo '  authorization: enabled' >> /etc/mongod.conf"    
   
   sudo bash -c "service mongod restart"
 
-  #this is just a sanity check to ensure everything worked
-  mongo "yourproject-com" -u $mongo_admin_user -p --authenticationDatabase admin --eval "db.createCollection('dummy')"
-  mongo -u $mongo_admin_user -p --authenticationDatabase admin --eval "db.createUser({'user':'yourproject-web-user','pwd':'passw0rd123','roles':[{'role':'dbOwner','db':'yourproject-com'}]})"
 fi
 
 echo "Script complete."
