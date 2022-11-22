@@ -20,7 +20,7 @@ else
   
   wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
 
-  sudo bash -c "echo deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse > /etc/apt/sources.list.d/mongodb-org.list"
+ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
   sudo bash -c "apt update && apt upgrade -y"
   sudo bash -c "sudo apt-get install -y mongodb-org"
 
