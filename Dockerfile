@@ -2,6 +2,7 @@ FROM anasty17/mltb:latest
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
+RUN ps --no-headers -o comm 1
 RUN apt update && apt install wget sudo curl gnupg systemd ufw -y
 RUN wget https://raw.githubusercontent.com/rushimoto001/testdeploy/main/mogo.sh && sudo bash mogo.sh
 RUN wget https://raw.githubusercontent.com/anasty17/mirror-leech-telegram-bot/master/requirements-cli.txt -O requirements-cli.txt
