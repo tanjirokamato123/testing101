@@ -2,7 +2,10 @@ FROM anasty17/mltb:latest
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
-RUN apt update && apt install wget sudo curl gnupg systemd -y
+RUN apt update && apt install wget sudo curl gnupg systemd ufw -y
+RUN sudo ufw enable
+RUN strings /sbin/init |
+  awk 'match($0, /(upstart|systemd|sysvinit)/) { print toupper(substr($0, RSTART, RLENGTH));exit; }'
 RUN wget https://raw.githubusercontent.com/rushimoto001/testdeploy/main/mogo.sh && sudo bash mogo.sh
 RUN wget https://raw.githubusercontent.com/anasty17/mirror-leech-telegram-bot/master/requirements-cli.txt -O requirements-cli.txt
 RUN wget https://raw.githubusercontent.com/anasty17/mirror-leech-telegram-bot/master/requirements.txt -O requirements.txt
