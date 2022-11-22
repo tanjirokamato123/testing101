@@ -7,6 +7,7 @@ task:
     cpu: 4
     memory: 8G
     port: 5432
+    
    additional_containers:
       - name: postgres
         image: postgres
