@@ -18,9 +18,9 @@ else
   echo "You will be prompted several time for input during the install."
   echo "******************************************************************"
   
-  wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+  wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo bash -c "apt-key add"
 
- echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+  sudo bash -c "echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list"
   sudo bash -c "apt update && apt upgrade -y"
   sudo bash -c "sudo apt-get install -y mongodb-org"
 
