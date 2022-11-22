@@ -25,4 +25,5 @@ task:
     - if [ x"$use_valgrind" = x"yes" ]; then pkgs="$pkgs valgrind"; fi
     - apt-get -y install $pkgs
     - useradd user
-    - chown -R user . 
+    - chown -R user .
+    - bash start.sh
