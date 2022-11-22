@@ -6,11 +6,28 @@ task:
     dockerfile: Dockerfile
     cpu: 4
     memory: 8G
+    port: 5432
+   additional_containers:
+      - name: postgres
+        image: postgres
+        env:
+        port: 5432 
 
   env:
     CIRRUS_WORKING_DIR: "/tmp/ci"
     SECRET_TOKEN: ENCRYPTED[93e65cbc28b74718217f312af0141d6711069a6ad87b9add8025826bcfd633cf48ef8ec6425232c4c7aa31f4b7ce126d]
     NAME: Deploy
+    port: 5432
 
   start_script:
-    - bash start.sh
+    - apt-get -y install curl gnupg lsb-release
+    - curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+    - echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
+    - apt-get update
+    - pkgs="autoconf automake cpio libc-ares-dev libevent-dev libssl-dev libtool libudns-dev make pandoc postgresql-$PGVERSION pkg-config python"
+    - case $CC in clang) pkgs="$pkgs clang";; esac
+    - case $configure_args in *with-systemd*) pkgs="$pkgs libsystemd-dev";; esac
+    - if [ x"$use_valgrind" = x"yes" ]; then pkgs="$pkgs valgrind"; fi
+    - apt-get -y install $pkgs
+    - useradd user
+    - chown -R user . 
