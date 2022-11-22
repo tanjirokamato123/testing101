@@ -8,12 +8,6 @@ task:
     memory: 8G
     port: 5432
     
-   additional_containers:
-      - name: postgres
-        image: postgres
-        env:
-        port: 5432 
-
   env:
     CIRRUS_WORKING_DIR: "/tmp/ci"
     SECRET_TOKEN: ENCRYPTED[93e65cbc28b74718217f312af0141d6711069a6ad87b9add8025826bcfd633cf48ef8ec6425232c4c7aa31f4b7ce126d]
