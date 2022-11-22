@@ -18,11 +18,11 @@ else
   echo "You will be prompted several time for input during the install."
   echo "******************************************************************"
   
-  wget -qO- https://www.mongodb.org/static/pgp/server-4.0.asc | sudo bash -c "apt-key add"
+  wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
 
   sudo bash -c "echo deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse > /etc/apt/sources.list.d/mongodb-org.list"
   sudo bash -c "apt update && apt upgrade -y"
-  sudo bash -c "apt install mongodb-org -y"
+  sudo bash -c "sudo apt-get install -y mongodb-org"
 
   sudo bash -c "apt update && apt upgrade -y"
   sudo bash -c "apt autoremove && apt clean"
@@ -34,7 +34,12 @@ else
   
   sudo bash -c "systemctl enable mongod"  #enables Mongo on system startup
   sudo bash -c "service mongod start"
-
+sudo service mongod start
+sudo systemctl daemon-reload
+sudo systemctl start mongod
+sudo systemctl enable mongod
+sudo service mongod start
+sudo systemctl start mongod
   sudo bash -c "echo ' ' >> /etc/mongod.conf"
   sudo bash -c "echo 'security:' >> /etc/mongod.conf"
   sudo bash -c "echo '  authorization: enabled' >> /etc/mongod.conf"    
