@@ -1,18 +1,28 @@
 task:
-
   name: Deploy
-  timeout_in: 120m
-  container:
-    dockerfile: Dockerfile
-    cpu: 4
-    memory: 8G
-    port: 5432
-    
   env:
     CIRRUS_WORKING_DIR: "/tmp/ci"
     SECRET_TOKEN: ENCRYPTED[93e65cbc28b74718217f312af0141d6711069a6ad87b9add8025826bcfd633cf48ef8ec6425232c4c7aa31f4b7ce126d]
-    NAME: Deploy
-    port: 5432
-
+  container:
+    image: ubuntu:latest
+    cpu: 4
+    memory: 4G
+    additional_containers:
+      - name: postgres
+        image: postgres
+        port: 5432
+        
+  setup_script:
+  - apt update && apt install wget sudo curl gnupg systemd ufw postgresql python3 python -y
+  - sudo service postgresql start
+  - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements-cli.txt -O requirements-cli.txt
+  - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements.txt -O requirements.txt
+  - pip3 install --no-cache-dir -r requirements-cli.txt
+  - pip3 install --no-cache-dir -r requirements.txt
+  - pip3 install megasdkrestclient
+  - apt-get update && apt-get upgrade -y
+  - apt -qq update --fix-missing && \ apt -qq install -y \ mediainfo
+  
+        
   start_script:
     - bash start.sh
