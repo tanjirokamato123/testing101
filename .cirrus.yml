@@ -26,6 +26,7 @@ task:
   - pip3 install megasdkrestclient
   - apt-get update && apt-get upgrade -y
   - apt -qq update --fix-missing && apt -qq install -y mediainfo
+  - pg_ctlcluster 12 main start
   
         
   start_script:
