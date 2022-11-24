@@ -9,7 +9,7 @@ task:
     LANG: en_US.UTF-8
     LC_CTYPE: en_US.UTF-8
   container:
-    image: anasty17/mltb:latest
+    dockerfile: Dockerfile
     cpu: 4
     memory: 4G
     ports:
@@ -22,14 +22,5 @@ task:
               - 8080
               - 5432
         
-  setup_script:
-  - apt update && apt install wget sudo curl gnupg systemd ufw python3 python3-pip apt-utils git postgresql -y
-  - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements-cli.txt -O requirements-cli.txt
-  - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements.txt -O requirements.txt
-  - pip3 install -r requirements-cli.txt
-  - pip3 install -r requirements.txt
-  - pip3 install megasdkrestclient
-  - apt-get update && apt-get upgrade -y
-  - apt -qq update --fix-missing && apt -qq install -y mediainfo
-  - pg_ctlcluster 12 main start
-  - bash start.sh
+  start_script:
+    - bash start.sh
