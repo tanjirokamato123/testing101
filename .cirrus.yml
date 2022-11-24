@@ -13,11 +13,11 @@ task:
         port: 5432
         
   setup_script:
-  - apt update && apt install wget sudo curl gnupg systemd ufw python3 -y
+  - apt update && apt install wget sudo curl gnupg systemd ufw python3 apt-utils -y
   - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements-cli.txt -O requirements-cli.txt
   - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements.txt -O requirements.txt
-  - pip3 install --no-cache-dir -r requirements-cli.txt
-  - pip3 install --no-cache-dir -r requirements.txt
+  - pip3 install -r requirements-cli.txt
+  - pip3 install -r requirements.txt
   - pip3 install megasdkrestclient
   - apt-get update && apt-get upgrade -y
   - apt -qq update --fix-missing && apt -qq install -y mediainfo
