@@ -3,7 +3,7 @@ FROM anasty17/mltb:latest
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 RUN ps --no-headers -o comm 1
-RUN apt update && apt install wget sudo curl gnupg systemd ufw postgresql -y
+RUN apt update && apt install wget sudo curl gnupg systemd ufw python3 python3-pip apt-utils git postgresql -y
 RUN sudo service postgresql start
 RUN pg_ctlcluster 12 main start
 RUN wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements-cli.txt -O requirements-cli.txt
