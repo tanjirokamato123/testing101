@@ -13,7 +13,7 @@ task:
         port: 5432
         
   setup_script:
-  - apt update && apt install wget sudo curl gnupg systemd ufw postgresql python3 -y
+  - apt update && apt install wget sudo curl gnupg systemd ufw python3 -y
   - sudo service postgresql start
   - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements-cli.txt -O requirements-cli.txt
   - wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements.txt -O requirements.txt
