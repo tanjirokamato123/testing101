@@ -1,5 +1,6 @@
 task:
   name: Deploy
+  stateful: true
   timeout_in: 120m
   env:
     CIRRUS_WORKING_DIR: "/tmp/ci"
