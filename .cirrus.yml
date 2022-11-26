@@ -9,7 +9,7 @@ task:
     LANG: en_US.UTF-8
     LC_CTYPE: en_US.UTF-8
   container:
-    docker: Dockerfile
+    dockerfile: Dockerfile
     cpu: 4
     memory: 4G
         
