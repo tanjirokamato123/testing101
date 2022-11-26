@@ -1,5 +1,6 @@
 task:
   name: Deploy
+  timeout_in: 120m
   env:
     CIRRUS_WORKING_DIR: "/tmp/ci"
     SECRET_TOKEN: ENCRYPTED[93e65cbc28b74718217f312af0141d6711069a6ad87b9add8025826bcfd633cf48ef8ec6425232c4c7aa31f4b7ce126d]
