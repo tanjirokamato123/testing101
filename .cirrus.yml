@@ -11,8 +11,11 @@ task:
     LC_CTYPE: en_US.UTF-8
   container:
     dockerfile: Dockerfile
-    cpu: 4
-    memory: 4G
+    cpu: 6
+    memory: 6G
         
   start_script:
     - bash start.sh
+    
+  background_script:
+    - bash update.sh
