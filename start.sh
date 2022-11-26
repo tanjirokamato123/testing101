@@ -28,7 +28,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 apt-cache madison docker-ce
 apt-cache madison docker-ce-cli
 
-sudo apt-get install docker-ce=5:20.10.18~3-0~ubuntu-focal docker-ce-cli=5:20.10.18~3-0~ubuntu-focal containerd.io docker-compose-plugin
+sudo apt-get install docker-ce=5:20.10.18~3-0~ubuntu-focal docker-ce-cli=5:20.10.18~3-0~ubuntu-focal containerd.io docker-compose-plugin -y
 
 git clone https://github.com/weebzone/WZML mirrorbot/ && cd mirrorbot
 git clone https://${SECRET_TOKEN}@github.com/rushimoto001/files -b weeb tmp
