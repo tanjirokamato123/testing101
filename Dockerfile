@@ -1,22 +1,14 @@
-FROM ubuntu:latest
-RUN export DEBIAN_FRONTEND=noninteractive
-RUN apt update && apt install wget sudo curl gnupg systemd ufw python3 python3-pip apt-utils git postgresql -y
-RUN sudo apt-get update -y
-RUN sudo apt install ca-certificates curl gnupg lsb-release -y
-RUN sudo mkdir -p /etc/apt/keyrings
-RUN sudo rm -rf /etc/apt/keyrings/docker.gpg
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+FROM anasty17/mltb:latest
 
-RUN echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+WORKDIR /usr/src/app
+RUN chmod 777 /usr/src/app
+RUN apt update && apt install mediainfo wget sudo curl python3 python3-pip apt-utils git -y
+RUN wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements-cli.txt -O requirements-cli.txt
+RUN wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements.txt -O requirements.txt
+RUN pip3 install --no-cache-dir -r requirements-cli.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install megasdkrestclient
 
-RUN sudo apt update -y
-RUN sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-
-RUN apt-cache madison docker-ce
-RUN apt-cache madison docker-ce-cli
-
-RUN sudo apt install docker-ce=5:20.10.18~3-0~ubuntu-focal docker-ce-cli=5:20.10.18~3-0~ubuntu-focal containerd.io docker-compose-plugin -y
+COPY . .
 
 CMD ["bash", "start.sh"]
