@@ -14,8 +14,8 @@ task:
     cpu: 6
     memory: 6G
         
+  update_background_script:
+    - bash update.sh
+    
   start_script:
     - bash start.sh
-    
-  background_script:
-    - bash update.sh
