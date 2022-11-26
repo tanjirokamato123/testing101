@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install wget sudo curl gnupg systemd ufw python3 python3-pip apt-utils git postgresql -y
 RUN sudo apt-get update -y
 RUN sudo apt-get install ca-certificates curl gnupg lsb-release -y
