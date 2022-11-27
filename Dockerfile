@@ -1,6 +1,5 @@
 FROM anasty17/mltb:latest
-ENV TZ=Asia/Kolkata
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 RUN apt update && apt install mediainfo wget sudo curl python3 python3-pip apt-utils git zip unzip curl tar aria2 qbittorrent-nox -y
