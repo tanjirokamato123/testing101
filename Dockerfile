@@ -16,5 +16,11 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt -qq update --fix-missing && \
     apt -qq install -y \
     mediainfo
+    
+RUN ls
+RUN df -h
+RUN free -h
 
 COPY . .
+
+CMD ["bash", "start.sh"]
