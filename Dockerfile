@@ -23,9 +23,7 @@ RUN free -h
 
 RUN sudo apt install -y software-properties-common gnupg apt-transport-https ca-certificates
 RUN sudo apt install -y mongodb
-RUN ps -p 1 -o comm=
-RUN service start mongod
-RUN chkconfig mongod on
+
 
 
 COPY . .
