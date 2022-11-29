@@ -1,5 +1,8 @@
 FROM anasty17/mltb:latest
 
+RUN export TERM=xterm
+RUN TERM=xterm
+
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 
