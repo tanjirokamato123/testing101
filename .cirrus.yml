@@ -14,6 +14,12 @@ task:
     dockerfile: Dockerfile
     cpu: 6
     memory: 6G
+    expose:
+             - "27017"
+    ports:
+             - "27017:27017"
+    networks:
+             - default
         
   update_background_script:
     - bash update.sh
