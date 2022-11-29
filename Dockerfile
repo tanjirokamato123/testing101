@@ -2,6 +2,8 @@ FROM anasty17/mltb:latest
 
 RUN export TERM=xterm
 RUN TERM=xterm
+RUN EXPOSE 8080
+RUN EXPOSE 27017
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
