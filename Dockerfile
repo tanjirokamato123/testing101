@@ -3,7 +3,7 @@ FROM anasty17/mltb:latest
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 
-RUN apt update && apt install wget sudo curl python3 python3-pip apt-utils git zip unzip curl tar -y
+RUN apt update && apt install wget sudo curl python3 python3-pip apt-utils git zip unzip curl tar systemctl -y
 
 RUN wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements-cli.txt -O requirements-cli.txt
 RUN wget https://raw.githubusercontent.com/weebzone/WZML/master/requirements.txt -O requirements.txt
@@ -20,6 +20,13 @@ RUN apt -qq update --fix-missing && \
 RUN ls
 RUN df -h
 RUN free -h
+
+RUN sudo apt install -y software-properties-common gnupg apt-transport-https ca-certificates
+RUN sudo apt install -y mongodb
+RUN sudo systemctl start mongod
+RUN sudo systemctl status mongod
+RUN sudo systemctl enable mongod
+
 
 COPY . .
 
