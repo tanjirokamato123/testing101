@@ -1,4 +1,5 @@
 FROM anasty17/mltb:latest
+RUN EXPORT TERM=xterm
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
@@ -24,9 +25,8 @@ RUN free -h
 RUN sudo apt install -y software-properties-common gnupg apt-transport-https ca-certificates
 RUN sudo apt install -y mongodb
 RUN ps -p 1 -o comm=
-RUN sudo service start mongod
-RUN sudo service mongod status
-RUN sudo chkconfig mongod on
+RUN service start mongod
+RUN chkconfig mongod on
 
 
 COPY . .
