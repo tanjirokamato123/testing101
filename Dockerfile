@@ -16,15 +16,6 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt -qq update --fix-missing && \
     apt -qq install -y \
     mediainfo
-    
-RUN ls
-RUN df -h
-RUN free -h
-
-RUN sudo apt install -y software-properties-common gnupg apt-transport-https ca-certificates
-RUN sudo apt install -y mongodb
-
-
 
 COPY . .
 
