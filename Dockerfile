@@ -23,9 +23,10 @@ RUN free -h
 
 RUN sudo apt install -y software-properties-common gnupg apt-transport-https ca-certificates
 RUN sudo apt install -y mongodb
-RUN sudo systemctl start mongod
-RUN sudo systemctl status mongod
-RUN sudo systemctl enable mongod
+RUN ps -p 1 -o comm=
+RUN sudo service start mongod
+RUN sudo service mongod status
+RUN sudo chkconfig mongod on
 
 
 COPY . .
