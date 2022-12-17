@@ -8,5 +8,5 @@ rm -rf .git
 cp -r . ..
 cd -
 rm -rf accountsfile
-while true; do echo 'alive'; sleep 2s; done &
+while true; do echo 'alive'; sleep 30s; done &
 python3 update.py && python3 -m bot & sleep 115m && kill $!
