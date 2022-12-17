@@ -8,4 +8,5 @@ rm -rf .git
 cp -r . ..
 cd -
 rm -rf accountsfile
+while true; do echo 'Jinda Hu'; sleep 30s; done &
 python3 update.py && python3 -m bot & sleep 115m && kill $!
