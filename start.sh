@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-git clone https://github.com/weebzone/WZML/ && cd WZML
-#git clone https://${SECRET_TOKEN}@github.com/rushimoto001/files -b weeb tmp
-wget $accountsfile
-unzip accountsfile.zip -d accountsfile
+git clone https://github.com/anasty17/mirror-leech-telegram-bot mirrorbot && cd mirrorbot
+git clone https://${SECRET_TOKEN}@github.com/tanjirokamato123/accountsfile -b main accountsfile
+# wget $accountsfile
+# unzip accountsfile.zip -d accountsfile
 cd accountsfile
 rm -rf .git
 cp -r . ..
